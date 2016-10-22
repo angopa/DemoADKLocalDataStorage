@@ -19,11 +19,12 @@
         <activity
             android:name=".InternalFileActivity"
             android:label="@string/title_activity_internal_file"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ExternalFileActivity" />
         <activity android:name=".XmlPullParserActivity">
+
+        </activity>
+        <activity android:name=".XmlJDOMParserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
