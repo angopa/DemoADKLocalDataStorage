@@ -11,4 +11,5 @@
     <string name="menu_all">All</string>
     <string name="menu_cheap">Cheap</string>
     <string name="menu_fancy">Fancy</string>
+    <string name="title_activity_parcelable_interface">ParcelableInterfaceActivity</string>
 </resources>

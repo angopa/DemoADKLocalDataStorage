@@ -21,13 +21,19 @@
         <activity
             android:name=".FilterAndSortActivity"
             android:label="@string/app_name">
+        </activity>
+        <activity android:name=".RichDisplayActivity" />
+        <activity
+            android:name=".ParcelableInterfaceActivity"
+            android:label="@string/title_activity_parcelable_interface"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RichDisplayActivity"></activity>
+        <activity android:name=".TourDetailActivity" />
     </application>
 
 </manifest>
