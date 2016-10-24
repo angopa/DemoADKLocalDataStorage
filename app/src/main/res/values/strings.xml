@@ -8,4 +8,7 @@
     <string name="title_activity_internal_file">InternalFileActivity</string>
     <string name="btn_createfile">Create File</string>
     <string name="btn_readfile">Read File</string>
+    <string name="menu_all">All</string>
+    <string name="menu_cheap">Cheap</string>
+    <string name="menu_fancy">Fancy</string>
 </resources>

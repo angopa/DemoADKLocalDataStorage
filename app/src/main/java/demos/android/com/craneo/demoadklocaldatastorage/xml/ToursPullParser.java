@@ -1,4 +1,4 @@
-package demos.android.com.craneo.demoadklocaldatastorage;
+package demos.android.com.craneo.demoadklocaldatastorage.xml;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +13,8 @@ import android.content.Context;
 import android.content.res.Resources.NotFoundException;
 import android.util.Log;
 
-import demos.android.com.craneo.demoadklocaldatastorage.bean.Tour;
+import demos.android.com.craneo.demoadklocaldatastorage.R;
+import demos.android.com.craneo.demoadklocaldatastorage.model.Tour;
 
 public class ToursPullParser {
 
