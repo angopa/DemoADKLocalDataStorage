@@ -28,6 +28,7 @@ public class ParcelableInterfaceActivity extends AppCompatActivity{
     public static final String LOGTAG="EXPLORECA";
     public static final String USERNAME="pref_username";
     public static final String VIEWIMAGE="pref_viewimages";
+    private static final int TOUR_DETAIL_ACTIVITY = 1009;
 
     private SharedPreferences settings;
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
@@ -36,6 +37,7 @@ public class ParcelableInterfaceActivity extends AppCompatActivity{
     ToursDataSource datasource;
 
     ListView listView;
+    boolean isMyTours;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +69,7 @@ public class ParcelableInterfaceActivity extends AppCompatActivity{
             createData();
             tours = datasource.findAll();
         }
-
+        isMyTours = false;
         refreshDisplay();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -101,16 +103,25 @@ public class ParcelableInterfaceActivity extends AppCompatActivity{
             case R.id.menu_all:
                 tours = datasource.findAll();
                 refreshDisplay();
+                isMyTours = false;
                 break;
 
             case R.id.menu_cheap:
                 tours = datasource.findFilter("price <= 300", "price ASC");
                 refreshDisplay();
+                isMyTours = false;
                 break;
 
             case R.id.menu_fancy:
                 tours = datasource.findFilter("price >= 1000", "price DESC");
                 refreshDisplay();
+                isMyTours = false;
+                break;
+
+            case R.id.menu_mytours:
+                tours = datasource.findMyTours();
+                refreshDisplay();
+                isMyTours = true;
                 break;
 
             default:
@@ -137,10 +148,12 @@ public class ParcelableInterfaceActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Tour tour = tours.get(position);
 
-                Intent intent = new Intent(ParcelableInterfaceActivity.this, TourDetailActivity.class);
+                Intent intent = new Intent(ParcelableInterfaceActivity.this, TourDetailJoinActivity.class);
 
                 intent.putExtra(".model.Tour", tour);
-                startActivity(intent);
+                intent.putExtra("isMyTours", isMyTours);
+                
+                startActivityForResult(intent, TOUR_DETAIL_ACTIVITY);
             }
         });
 
@@ -167,13 +180,15 @@ public class ParcelableInterfaceActivity extends AppCompatActivity{
         }
     }
 
-//    @Override
-//    protected void onListItemClick(ListView l, View v, int position, long id) {
-//        super.onListItemClick(l, v, position, id);
-//
-//        Intent intent = new Intent(this, TourDetailActivity.class);
-//        startActivity(intent);
-//
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == TOUR_DETAIL_ACTIVITY && resultCode == -1){
+            datasource.open();
+            tours = datasource.findMyTours();
+            refreshDisplay();
+            isMyTours = true;
+        }
+    }
 }

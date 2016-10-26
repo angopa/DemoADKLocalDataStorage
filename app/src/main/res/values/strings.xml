@@ -12,4 +12,8 @@
     <string name="menu_cheap">Cheap</string>
     <string name="menu_fancy">Fancy</string>
     <string name="title_activity_parcelable_interface">ParcelableInterfaceActivity</string>
+    <string name="title_activity_tour_detail_join">TourDetailJoinActivity</string>
+    <string name="add_tour">Add new Tour</string>
+    <string name="menu_mytours">My Tours</string>
+    <string name="delete_tour">Delete </string>
 </resources>

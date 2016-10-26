@@ -20,8 +20,7 @@
         <activity android:name=".SqliteOpenHelperActivity" />
         <activity
             android:name=".FilterAndSortActivity"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"></activity>
         <activity android:name=".RichDisplayActivity" />
         <activity
             android:name=".ParcelableInterfaceActivity"
@@ -34,6 +33,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".TourDetailActivity" />
+        <activity
+            android:name=".TourDetailJoinActivity"
+            android:label="@string/title_activity_tour_detail_join"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

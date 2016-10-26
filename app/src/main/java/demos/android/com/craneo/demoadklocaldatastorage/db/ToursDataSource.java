@@ -86,4 +86,29 @@ public class ToursDataSource {
         }
         return tours;
     }
+
+    public boolean addToMyTours(Tour tour){
+        ContentValues values = new ContentValues();
+        values.put(ToursDBOpenHelper.COLUMN_ID, tour.getId());
+        Long result = database.insert(ToursDBOpenHelper.TABLE_MYTOURS, null, values);
+        return (result != -1);
+    }
+
+    public boolean removeFromMyTours(Tour tour){
+        String where = ToursDBOpenHelper.COLUMN_ID+"="+tour.getId();
+        int result = database.delete(ToursDBOpenHelper.TABLE_MYTOURS, where, null);
+        return (result == 1);
+    }
+
+    public List<Tour> findMyTours(){
+        String query = "SELECT tours.* FROM "+
+                "tours JOIN mytours ON "+
+                "tours.tourId = mytours.tourId";
+        Cursor cursor = database.rawQuery(query, null);
+        Log.d(LOGTAG, "Returned "+cursor.getCount()+" columns");
+        List<Tour> tours = cursorToList(cursor);
+        return tours;
+    }
+
+
 }

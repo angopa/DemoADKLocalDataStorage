@@ -13,7 +13,7 @@ public class ToursDBOpenHelper extends SQLiteOpenHelper {
 
     private static final String LOGTAG  = "EXPLORECA";
     private static final String DATABASE_NAME = "tours.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public static final String TABLE_TOURS = "tours";
     public static final String COLUMN_ID = "tourId";
@@ -31,6 +31,11 @@ public class ToursDBOpenHelper extends SQLiteOpenHelper {
                     COLUMN_PRICE + " NUMERIC"+
                     ")";
 
+    public static final String TABLE_MYTOURS = "mytours";
+    private static final String TABLE_MYTOURS_CREATE =
+                    "CREATE TABLE "+ TABLE_MYTOURS+ "("+
+                    COLUMN_ID +" INTEGER PRIMARY KEY)";
+
     public ToursDBOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -38,13 +43,15 @@ public class ToursDBOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(TABLE_CREATE);
+        sqLiteDatabase.execSQL(TABLE_MYTOURS_CREATE);
         Log.i(LOGTAG, "Table has been created");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS" + TABLE_TOURS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_TOURS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MYTOURS);
         onCreate(sqLiteDatabase);
     }
 }

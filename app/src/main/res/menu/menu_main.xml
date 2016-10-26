@@ -24,4 +24,10 @@
         android:title="@string/menu_fancy"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/menu_mytours"
+        android:orderInCategory="100"
+        android:title="@string/menu_mytours"
+        app:showAsAction="always" />
+
 </menu>
